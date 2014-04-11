@@ -3,6 +3,9 @@ function co(generator) {
 		var gen = generator();
 
 		function next(err, result) {
+			if(err){
+				return fn(err);
+			}
 			var step = gen.next(result);
 			if (!step.done) {
 				step.value(next);
