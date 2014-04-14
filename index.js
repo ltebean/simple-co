@@ -20,7 +20,7 @@
 
 var Promise = require('./promise');
 
-function readFile(filename) {
+function read_File(filename) {
 	var promise = new Promise();
 	require('fs').readFile(filename, 'utf8', function(err, result) {
 		if (err) {
@@ -32,12 +32,12 @@ function readFile(filename) {
 	return promise;
 }
 
-readFile('./file/a.txt')
+read_File('./file/a.txt')
 	.then(function(text) {
 		console.log(text);
-		return readFile('./file/b.txt');
-	}).then(function(text) {
-		console.log(text);
-	}).then(function(){
-		console.log('done');
+		return read_File('./file/b.txt');
+	})
+	.then(JSON.parse)
+	.then(function(json){
+		console.log(json);
 	})
